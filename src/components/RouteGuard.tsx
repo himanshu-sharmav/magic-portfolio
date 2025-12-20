@@ -30,7 +30,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
         if (!pathname) return false;
 
         // Remove basePath if present and trailing slash
-        let cleanPath = pathname.replace(/^\/portfolio/, '').replace(/\/$/, '') || '/';
+        const cleanPath = pathname.replace(/^\/portfolio/, '').replace(/\/$/, '') || '/';
         
         console.log('RouteGuard - pathname:', pathname);
         console.log('RouteGuard - cleanPath:', cleanPath);

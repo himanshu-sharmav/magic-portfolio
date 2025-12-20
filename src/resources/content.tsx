@@ -1,12 +1,18 @@
 import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
+// Helper function to get the correct image path based on environment
+const getImagePath = (path: string) => {
+  const isProd = process.env.NODE_ENV === 'production';
+  return isProd ? `/portfolio${path}` : path;
+};
+
 const person: Person = {
   firstName: "Himanshu",
   lastName: "Sharma",
   name: "Himanshu Sharma",
   role: "Full Stack Developer",
-  avatar: "/portfolio/images/avatar.jpeg",
+  avatar: getImagePath("/images/avatar.jpeg"),
   email: "himanshusharma.dev80@gmail.com",
   location: "Asia/Kolkata", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
@@ -40,7 +46,7 @@ const social: Social = [
 
 const home: Home = {
   path: "/",
-  image: "/portfolio/images/og/home.jpg",
+  image: getImagePath("/images/og/home.jpg"),
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
@@ -112,7 +118,7 @@ const about: About = {
         ],
         images: [
           {
-            src: "/portfolio/images/companies/digitalalpha_logo.jpeg",
+            src: getImagePath("/images/companies/digitalalpha_logo.jpeg"),
             alt: "Digital Alpha",
             width: 8,
             height: 4,
@@ -130,7 +136,7 @@ const about: About = {
         ],
         images: [
           {
-            src: "/portfolio/images/companies/alemeno.jpeg",
+            src: getImagePath("/images/companies/alemeno.jpeg"),
             alt: "Alemeno",
             width: 8,
             height: 4,
@@ -148,7 +154,7 @@ const about: About = {
         ],
         images: [
           {
-            src: "/portfolio/images/companies/across_the_globe_atg__logo.jpeg",
+            src: getImagePath("/images/companies/across_the_globe_atg__logo.jpeg"),
             alt: "ATG.World",
             width: 8,
             height: 4,

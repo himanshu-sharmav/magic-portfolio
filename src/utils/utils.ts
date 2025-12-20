@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 
 type Team = {
@@ -38,14 +38,23 @@ function readMDXFile(filePath: string) {
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
 
+  // Helper function to add basePath prefix to image paths
+  const addBasePath = (imagePath: string) => {
+    const isProd = process.env.NODE_ENV === 'production';
+    return isProd ? `/portfolio${imagePath}` : imagePath;
+  };
+
   const metadata: Metadata = {
     title: data.title || "",
     publishedAt: data.publishedAt,
     summary: data.summary || "",
-    image: data.image || "",
-    images: data.images || [],
+    image: data.image ? addBasePath(data.image) : "",
+    images: (data.images || []).map((img: string) => addBasePath(img)),
     tag: data.tag || [],
-    team: data.team || [],
+    team: (data.team || []).map((member: Team) => ({
+      ...member,
+      avatar: addBasePath(member.avatar)
+    })),
     link: data.link || "",
   };
 
