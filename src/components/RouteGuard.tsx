@@ -37,6 +37,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
         console.log('RouteGuard - routes:', routes);
         console.log('RouteGuard - cleanPath in routes:', cleanPath in routes);
         console.log('RouteGuard - route value:', routes[cleanPath as keyof typeof routes]);
+        console.log('RouteGuard - production check - NODE_ENV:', process.env.NODE_ENV);
 
         // Check if the clean path exists in routes and is enabled
         if (cleanPath in routes) {
