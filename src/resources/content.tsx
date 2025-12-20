@@ -4,7 +4,7 @@ import { Line, Row, Text } from "@once-ui-system/core";
 // Helper function to get the correct image path based on environment
 const getImagePath = (path: string) => {
   const isProd = process.env.NODE_ENV === 'production';
-  return isProd ? `/portfolio${path}` : path;
+  return isProd ? `/magic-portfolio${path}` : path;
 };
 
 const person: Person = {

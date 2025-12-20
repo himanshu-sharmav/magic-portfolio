@@ -41,7 +41,7 @@ function readMDXFile(filePath: string) {
   // Helper function to add basePath prefix to image paths
   const addBasePath = (imagePath: string) => {
     const isProd = process.env.NODE_ENV === 'production';
-    return isProd ? `/portfolio${imagePath}` : imagePath;
+    return isProd ? `/magic-portfolio${imagePath}` : imagePath;
   };
 
   const metadata: Metadata = {
