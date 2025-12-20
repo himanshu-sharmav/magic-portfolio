@@ -31,18 +31,10 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
 
         // Remove basePath if present and trailing slash
         const cleanPath = pathname.replace(/^\/portfolio/, '').replace(/\/$/, '') || '/';
-        
-        console.log('RouteGuard - pathname:', pathname);
-        console.log('RouteGuard - cleanPath:', cleanPath);
-        console.log('RouteGuard - routes:', routes);
-        console.log('RouteGuard - cleanPath in routes:', cleanPath in routes);
-        console.log('RouteGuard - route value:', routes[cleanPath as keyof typeof routes]);
-        console.log('RouteGuard - production check - NODE_ENV:', process.env.NODE_ENV);
 
         // Check if the clean path exists in routes and is enabled
         if (cleanPath in routes) {
           const isEnabled = routes[cleanPath as keyof typeof routes];
-          console.log('RouteGuard - route enabled:', isEnabled);
           return isEnabled;
         }
 
@@ -50,12 +42,10 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
         const dynamicRoutes = ["/blog", "/work", "/projects"] as const;
         for (const route of dynamicRoutes) {
           if (cleanPath?.startsWith(route) && routes[route]) {
-            console.log('RouteGuard - dynamic route matched:', route);
             return true;
           }
         }
 
-        console.log('RouteGuard - no route matched');
         return false;
       };
 
