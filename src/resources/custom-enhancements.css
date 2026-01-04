@@ -121,16 +121,13 @@ pre, code {
   font-feature-settings: 'liga' 1, 'calt' 1;
 }
 
-/* Enhanced image loading */
+/* Enhanced image loading - removed opacity hiding that was breaking images */
 img {
   transition: opacity 0.3s ease;
 }
 
+/* Images should always be visible */
 img[loading="lazy"] {
-  opacity: 0;
-}
-
-img[loading="lazy"].loaded {
   opacity: 1;
 }
 
