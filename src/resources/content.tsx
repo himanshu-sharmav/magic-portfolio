@@ -97,24 +97,7 @@ const about: About = {
     title: "My Journey",
     description: (
       <>
-        <strong>Passionate about creating digital solutions that make a difference.</strong>
-        <br />
-        <br />
-        As a detail-oriented Full Stack Developer, I've gained hands-on experience through impactful internships and challenging academic projects. 
-        My expertise spans <strong>Python</strong>, <strong>Django</strong>, <strong>Flask</strong>, and <strong>React.js</strong>, with a proven track record of:
-        <br />
-        <br />
-        • <strong>35% faster server response times</strong> through optimization
-        <br />
-        • <strong>99.9% uptime</strong> during traffic peaks
-        <br />
-        • <strong>10,000+ daily requests</strong> handled efficiently
-        <br />
-        • <strong>20% higher user engagement</strong> through feature development
-        <br />
-        <br />
-        I thrive on applying agile methodologies to deliver robust digital solutions that drive user engagement and system efficiency. 
-        Currently pursuing my B.Tech in Computer Science while contributing to cutting-edge AI platforms.
+        Passionate about creating digital solutions that make a difference. As a detail-oriented Full Stack Developer, I've gained hands-on experience through impactful internships and challenging academic projects. My expertise spans Python, Django, Flask, and React.js, with a proven track record of achieving 35% faster server response times through optimization, maintaining 99.9% uptime during traffic peaks, handling 10,000+ daily requests efficiently, and driving 20% higher user engagement through feature development. I thrive on applying agile methodologies to deliver robust digital solutions that drive user engagement and system efficiency. Currently pursuing my B.Tech in Computer Science while contributing to cutting-edge AI platforms.
       </>
     ),
   },
