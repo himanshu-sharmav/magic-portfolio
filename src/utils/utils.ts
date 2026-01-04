@@ -39,9 +39,9 @@ function readMDXFile(filePath: string) {
   const { data, content } = matter(rawContent);
 
   // Helper function to add basePath prefix to image paths
+  // With custom domain, no prefix needed
   const addBasePath = (imagePath: string) => {
-    const isProd = process.env.NODE_ENV === 'production';
-    return isProd ? `/magic-portfolio${imagePath}` : imagePath;
+    return imagePath; // No prefix needed with custom domain
   };
 
   const metadata: Metadata = {

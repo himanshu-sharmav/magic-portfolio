@@ -2,9 +2,9 @@ import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } fro
 import { Line, Row, Text } from "@once-ui-system/core";
 
 // Helper function to get the correct image path based on environment
+// With custom domain, no prefix needed
 const getImagePath = (path: string) => {
-  const isProd = process.env.NODE_ENV === 'production';
-  return isProd ? `/magic-portfolio${path}` : path;
+  return path; // No prefix needed with custom domain
 };
 
 const person: Person = {
@@ -48,17 +48,17 @@ const home: Home = {
   path: "/",
   image: getImagePath("/images/og/home.jpg"),
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building scalable full-stack solutions</>,
+  title: `${person.name} – Full Stack Developer`,
+  description: `Crafting scalable digital solutions with modern technologies. Specializing in Django, React.js, and cloud architecture.`,
+  headline: <>Transforming ideas into <strong>scalable digital experiences</strong></>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">EpiphAI</strong>{" "}
+        <strong className="ml-4">EpiphAI Platform</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Latest Project
         </Text>
       </Row>
     ),
@@ -66,8 +66,12 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Himanshu, a Full Stack Developer specializing in Django, Flask, and React.js.
-      <br /> I build robust backend systems and seamless user experiences with a focus on performance and scalability.
+      I'm <strong>Himanshu Sharma</strong>, a passionate Full Stack Developer with expertise in building robust backend systems and intuitive user interfaces.
+      <br />
+      <br />
+      Currently contributing to cutting-edge AI platforms while pursuing my B.Tech in Computer Science. 
+      I specialize in <strong>Django</strong>, <strong>React.js</strong>, and <strong>cloud technologies</strong>, 
+      with a proven track record of improving application performance by up to 35% and handling 10,000+ daily requests.
     </>
   ),
 };
@@ -90,12 +94,27 @@ const about: About = {
   },
   intro: {
     display: true,
-    title: "Introduction",
+    title: "My Journey",
     description: (
       <>
-        Detail-oriented Full Stack Developer with hands-on experience in backend and frontend development through academic projects and ongoing internships. 
-        Proficient in Python, Django, Flask, and React.js, with a record of enhancing application performance, resolving issues rapidly, 
-        and integrating cloud services and containerization. Adept at applying agile methodologies to deliver robust digital solutions that drive user engagement and system efficiency.
+        <strong>Passionate about creating digital solutions that make a difference.</strong>
+        <br />
+        <br />
+        As a detail-oriented Full Stack Developer, I've gained hands-on experience through impactful internships and challenging academic projects. 
+        My expertise spans <strong>Python</strong>, <strong>Django</strong>, <strong>Flask</strong>, and <strong>React.js</strong>, with a proven track record of:
+        <br />
+        <br />
+        • <strong>35% faster server response times</strong> through optimization
+        <br />
+        • <strong>99.9% uptime</strong> during traffic peaks
+        <br />
+        • <strong>10,000+ daily requests</strong> handled efficiently
+        <br />
+        • <strong>20% higher user engagement</strong> through feature development
+        <br />
+        <br />
+        I thrive on applying agile methodologies to deliver robust digital solutions that drive user engagement and system efficiency. 
+        Currently pursuing my B.Tech in Computer Science while contributing to cutting-edge AI platforms.
       </>
     ),
   },

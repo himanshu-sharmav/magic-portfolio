@@ -7,11 +7,14 @@ const withMDX = mdx({
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// Check if using custom domain (no basePath needed) or GitHub Pages subdirectory
+const useCustomDomain = true; // Set to true when using custom domain like devhimanshu.space
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/magic-portfolio' : '',
-  assetPrefix: isProd ? '/magic-portfolio' : '',
+  basePath: useCustomDomain ? '' : (isProd ? '/magic-portfolio' : ''),
+  assetPrefix: useCustomDomain ? '' : (isProd ? '/magic-portfolio' : ''),
   eslint: {
     ignoreDuringBuilds: true,
   },

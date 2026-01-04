@@ -14,7 +14,7 @@ import type {
 import { home } from "./index";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL: string = "https://himanshu-sharmav.github.io/magic-portfolio";
+const baseURL: string = "https://devhimanshu.space";
 
 const routes: RoutesConfig = {
   "/": true,
@@ -37,31 +37,36 @@ const display: DisplayConfig = {
 const protectedRoutes: ProtectedRoutesConfig = {};
 
 // Import and set font for each variant
+import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import { Geist } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
 
-const heading = Geist({
+const heading = Inter({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const body = Geist({
+const body = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500"],
 });
 
-const label = Geist({
+const label = Inter({
   variable: "--font-label",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
-const code = Geist_Mono({
+const code = JetBrains_Mono({
   variable: "--font-code",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500"],
 });
 
 const fonts: FontsConfig = {
@@ -74,15 +79,15 @@ const fonts: FontsConfig = {
 // default customization applied to the HTML in the main layout.tsx
 const style: StyleConfig = {
   theme: "system", // dark | light | system
-  neutral: "gray", // sand | gray | slate | custom
-  brand: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  neutral: "slate", // sand | gray | slate | custom - slate is more modern
+  brand: "indigo", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom - indigo is more professional
+  accent: "emerald", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom - emerald for success/growth
   solid: "contrast", // color | contrast
-  solidStyle: "flat", // flat | plastic
+  solidStyle: "plastic", // flat | plastic - plastic adds depth
   border: "playful", // rounded | playful | conservative
   surface: "translucent", // filled | translucent
   transition: "all", // all | micro | macro
-  scaling: "100", // 90 | 95 | 100 | 105 | 110
+  scaling: "105", // 90 | 95 | 100 | 105 | 110 - slightly larger for better readability
 };
 
 const dataStyle: DataStyleConfig = {
@@ -101,27 +106,27 @@ const dataStyle: DataStyleConfig = {
 
 const effects: EffectsConfig = {
   mask: {
-    cursor: false,
+    cursor: true, // Enable cursor mask for interactive feel
     x: 50,
     y: 0,
-    radius: 100,
+    radius: 120, // Larger radius for better effect
   },
   gradient: {
-    display: false,
-    opacity: 100,
-    x: 50,
-    y: 60,
-    width: 100,
-    height: 50,
-    tilt: 0,
-    colorStart: "accent-background-strong",
-    colorEnd: "page-background",
+    display: true, // Enable gradient for modern look
+    opacity: 60, // Subtle gradient
+    x: 30,
+    y: 40,
+    width: 120,
+    height: 80,
+    tilt: 15, // Slight tilt for dynamic feel
+    colorStart: "brand-background-strong",
+    colorEnd: "accent-background-weak",
   },
   dots: {
     display: true,
-    opacity: 40,
-    size: "2",
-    color: "brand-background-strong",
+    opacity: 30, // Slightly more subtle
+    size: "3", // Larger dots for better visibility
+    color: "brand-background-medium",
   },
   grid: {
     display: false,
@@ -131,12 +136,12 @@ const effects: EffectsConfig = {
     height: "0.25rem",
   },
   lines: {
-    display: false,
-    opacity: 100,
-    color: "neutral-alpha-weak",
-    size: "16",
+    display: true, // Enable lines for texture
+    opacity: 15, // Very subtle
+    color: "brand-alpha-weak",
+    size: "24", // Larger spacing
     thickness: 1,
-    angle: 45,
+    angle: 30, // Diagonal lines for dynamic feel
   },
 };
 
