@@ -1,8 +1,14 @@
 /* Modern Portfolio Enhancements */
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
+/* GSAP ScrollSmoother */
+#smooth-wrapper {
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
+  width: 100%;
+  will-change: transform;
 }
 
 /* Enhanced hover effects for interactive elements */

@@ -16,6 +16,7 @@ import {
 } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from "@/components";
 import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -114,6 +115,9 @@ export default async function RootLayout({
           padding="0"
           horizontal="center"
         >
+          <SmoothScroll />
+          <div id="smooth-wrapper">
+            <div id="smooth-content">
           <RevealFx fill position="absolute">
             <Background
               mask={{
@@ -164,6 +168,8 @@ export default async function RootLayout({
             </Flex>
           </Flex>
           <Footer />
+            </div>
+          </div>
         </Column>
       </Providers>
     </Flex>
