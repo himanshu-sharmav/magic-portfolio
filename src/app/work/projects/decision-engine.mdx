@@ -1,0 +1,26 @@
+---
+title: "Decision Engine \u2014 explainable rule evaluation"
+publishedAt: "2026-09-06"
+summary: "A FastAPI service with configurable rules, weighted scoring, explicit decisions, and duplicate-request reuse."
+tag: "INDEPENDENT BACKEND PROJECT"
+images: []
+team: [{"name": "Himanshu Sharma", "role": "Software Engineer", "avatar": "/images/avatar.jpeg", "linkedIn": "https://www.linkedin.com/in/himanshu-sharma-055265207/"}]
+link: "https://github.com/himanshu-sharmav/decision-engine"
+---
+
+## What it does
+
+A configurable decision service evaluates JSON rules and returns approve, reject, or review outcomes with the reasons and triggered rules behind each decision.
+
+## What I built
+
+- Restricted expression evaluation for rule conditions.
+- Weighted scoring with hard-rejection overrides.
+- Payload-hash duplicate detection and persisted decision results.
+- Unit and API regression tests for evaluation behavior.
+
+This independent backend project makes each decision traceable to its inputs, rules, and scoring contributions.
+
+**Stack:** FastAPI, Python, SQLAlchemy.
+
+[View the source code](https://github.com/himanshu-sharmav/decision-engine)

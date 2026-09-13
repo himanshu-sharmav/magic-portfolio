@@ -10,6 +10,30 @@ interface RouteGuardProps {
   children: React.ReactNode;
 }
 
+function checkRouteEnabled(pathname: string | null) {
+  if (!pathname) return false;
+
+  // Remove basePath if present and trailing slash
+  // With custom domain, no basePath to remove
+  const cleanPath = pathname.replace(/\/$/, "") || "/";
+
+  // Check if the clean path exists in routes and is enabled
+  if (cleanPath in routes) {
+    const isEnabled = routes[cleanPath as keyof typeof routes];
+    return isEnabled;
+  }
+
+  // Check dynamic routes
+  const dynamicRoutes = ["/blog", "/work", "/projects"] as const;
+  for (const route of dynamicRoutes) {
+    if (cleanPath?.startsWith(route) && routes[route]) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   const pathname = usePathname();
   const [isRouteEnabled, setIsRouteEnabled] = useState(false);
@@ -26,31 +50,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       setIsPasswordRequired(false);
       setIsAuthenticated(false);
 
-      const checkRouteEnabled = () => {
-        if (!pathname) return false;
-
-        // Remove basePath if present and trailing slash
-        // With custom domain, no basePath to remove
-        const cleanPath = pathname.replace(/\/$/, '') || '/';
-
-        // Check if the clean path exists in routes and is enabled
-        if (cleanPath in routes) {
-          const isEnabled = routes[cleanPath as keyof typeof routes];
-          return isEnabled;
-        }
-
-        // Check dynamic routes
-        const dynamicRoutes = ["/blog", "/work", "/projects"] as const;
-        for (const route of dynamicRoutes) {
-          if (cleanPath?.startsWith(route) && routes[route]) {
-            return true;
-          }
-        }
-
-        return false;
-      };
-
-      const routeEnabled = checkRouteEnabled();
+      const routeEnabled = checkRouteEnabled(pathname);
       setIsRouteEnabled(routeEnabled);
 
       if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
@@ -82,6 +82,11 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       setError("Incorrect password");
     }
   };
+
+  // Public static pages must include their content before client hydration.
+  if (!protectedRoutes[pathname as keyof typeof protectedRoutes]) {
+    return checkRouteEnabled(pathname) ? <>{children}</> : <NotFound />;
+  }
 
   if (loading) {
     return (

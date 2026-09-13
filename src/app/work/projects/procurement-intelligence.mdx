@@ -1,0 +1,45 @@
+---
+title: "Procurement intelligence from the ground up"
+publishedAt: "2026-09-13"
+summary: "Built a FastAPI/React platform over ~1.85M contracts, with document extraction, entity resolution, territory analysis, and government-sales workflows."
+tag: "HOLANI & CO \u00b7 MAY\u2014AUG 2026"
+images: []
+team: [{"name": "Himanshu Sharma", "role": "Software Engineer", "avatar": "/images/avatar.jpeg", "linkedIn": "https://www.linkedin.com/in/himanshu-sharma-055265207/"}]
+---
+
+## The problem
+
+Government procurement data starts out fragmented: contracts and tenders, PDFs, inconsistent organization names, and buyer locations. A sales team needs a connected view of buyers, territories, competitors, and relevant opportunities.
+
+## My ownership
+
+I built the new procurement-intelligence platform from scratch for Holani & Co, spanning FastAPI services, PostgreSQL/SQLAlchemy data models, React interfaces, ingestion workers, and deployment workflows.
+
+## From documents to usable entities
+
+I built Gemini extraction and five-stage organization resolution: exact and alias matches, normalization, PostgreSQL trigram matching, and an LLM fallback. Model evaluation, per-call cost accounting, budget caps, and tracing made the enrichment process inspectable.
+
+For **2,404 relevant purchase orders** from a **157k-record IREPS source dataset**, the enrichment pass reached **99.3% office-and-state coverage (2,386/2,404)** at approximately **$2.7 in LLM inference spend**. **Measurement note:** Coverage counts populated office/state fields within that 2,404-order cohort.
+
+## Making large queries practical
+
+The data layer spanned approximately **1.85 million contracts**. I replaced wildcard and correlated scans with indexed exact matches and UNION lookups for contact-to-contract drill-down. A historical internal query audit reported approximately **12 seconds to 1.25 milliseconds** for that specific lookup.
+
+For server-built Excel exports, I removed a **20,000-row cap** using keyset batches, set-based aggregation, and write-only workbooks. The state-filtered export’s database phase fell from **54 seconds to 2.5 seconds** in an internal benchmark. **Measurement note:** Both timings come from historical internal measurements of the specific database operations described here.
+
+## The product workflow
+
+- Buyer, competitor, pricing, and territory analysis with exact PIN-code membership and market-share drill-down.
+- Single and bulk sales-order capture, including PDF extraction and missing-contract ingestion after order confirmation.
+- Immutable tender-document revisions with content-hash deduplication and authorized downloads.
+- Bulk organization merges with dry-run previews and identity checks.
+
+## Recoverability matters
+
+I added checkpointed collection, resumable backfills, per-record savepoints, malformed-data guards, and recoverable daily ingestion. One debugging fix corrected a resume filter that was skipping approximately **400 production-unit orders**.
+
+I also implemented staging automation and gated promotion, plus scheduled PostgreSQL backups with archive-readability checks, upload verification, retention, and status visibility.
+
+**Stack:** FastAPI, SQLAlchemy, Alembic, PostgreSQL, React, Gemini, Redis, Docker, GitHub Actions.
+
+[Explore my professional experience](/work)

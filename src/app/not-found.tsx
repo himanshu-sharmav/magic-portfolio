@@ -1,23 +1,11 @@
-"use client";
-
-import { useEffect } from "react";
-import { Column, Heading, Text } from "@once-ui-system/core";
+import Link from "next/link";
+import styles from "./case-study.module.css";
 
 export default function NotFound() {
-  useEffect(() => {
-    console.error("404 Not Found component rendered");
-    console.error("Current URL:", window.location.href);
-  }, []);
-
-  return (
-    <Column as="section" fill center paddingBottom="160">
-      <Text marginBottom="s" variant="display-strong-xl">
-        404
-      </Text>
-      <Heading marginBottom="l" variant="display-default-xs">
-        Page Not Found
-      </Heading>
-      <Text onBackground="neutral-weak">The page you are looking for does not exist.</Text>
-    </Column>
-  );
+  return <main id="main-content" className={styles.notFound}>
+    <span>404 / PAGE NOT FOUND</span>
+    <h1>A loose end.</h1>
+    <p>This address does not lead to a page. There is plenty of working software to explore elsewhere.</p>
+    <nav aria-label="Find your way back"><Link href="/">Back home</Link><Link href="/projects">Explore the projects</Link></nav>
+  </main>;
 }

@@ -1,108 +1,73 @@
-import { Column, Heading, Media, Meta, Row, Schema, Text, SmartLink } from "@once-ui-system/core";
+import Link from "next/link";
+import { Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
-import type React from "react";
+import styles from "./work.module.css";
 
 export async function generateMetadata() {
   return Meta.generate({
     title: work.title,
     description: work.description,
-    baseURL: baseURL,
-    image: `${baseURL}/images/og/home.jpg`,
+    baseURL,
     path: work.path,
   });
 }
 
 export default function Work() {
   return (
-    <Column maxWidth="m" paddingTop="24">
+    <main id="main-content" className={styles.page}>
       <Schema
         as="webPage"
         baseURL={baseURL}
         path={work.path}
         title={work.title}
         description={work.description}
-        image={`${baseURL}/images/og/home.jpg`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
+        author={{ name: person.name, url: `${baseURL}${about.path}` }}
       />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {work.title}
-      </Heading>
-
-      {/* Work Experience Section */}
-      {about.work.experiences && about.work.experiences.length > 0 && (
-        <Column fillWidth gap="l">
-          {about.work.experiences.map((experience, index) => (
-            <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
-              <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
-                <Row gap="12" vertical="center">
-                  {experience.images && experience.images.length > 0 && (
-                    <Media
-                      radius="s"
-                      style={{ width: '32px', height: '32px', objectFit: 'contain' }}
-                      alt={experience.images[0].alt}
-                      src={experience.images[0].src}
-                    />
-                  )}
-                  {experience.link ? (
-                    <SmartLink href={experience.link}>
-                      <Text variant="heading-strong-l">
-                        {experience.company}
-                      </Text>
-                    </SmartLink>
-                  ) : (
-                    <Text variant="heading-strong-l">
-                      {experience.company}
-                    </Text>
-                  )}
-                </Row>
-                <Text variant="heading-default-xs" onBackground="neutral-weak">
-                  {experience.timeframe}
-                </Text>
-              </Row>
-              <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
-                {experience.role}
-              </Text>
-              <Column as="ul" gap="16" marginBottom="m">
-                {experience.achievements.map(
-                  (achievement: React.ReactNode, index: number) => (
-                    <Text
-                      as="li"
-                      variant="body-default-m"
-                      key={`${experience.company}-${index}`}
-                    >
-                      {achievement}
-                    </Text>
-                  ),
+      <section className={styles.hero}><div><p className={styles.eyebrow}>EXPERIENCE / 2024—PRESENT</p><h1>Work,<br /><span>in practice.</span></h1></div><p className={styles.lead}>From internships to a full-time engineering role: backend services, data pipelines, and interfaces across AI, compliance, finance, and procurement.</p></section>
+      <div className="experience-list">
+        {about.work.experiences.map((experience, index) => (
+          <article
+            key={experience.company}
+            className={styles.entry}
+          >
+            <div className={styles.date}>{experience.timeframe}</div>
+            <div>
+              <h2>{experience.company}</h2>
+              <p className={styles.role}>{experience.role}</p>
+              <ul>
+                {experience.achievements.map((achievement, i) => (
+                  <li key={i}>{achievement}</li>
+                ))}
+              </ul>
+              <div className={styles.links}>
+                {index === 0 && (
+                  <>
+                    <Link href="/projects/complisun-compliance-workflows">
+                      CompliSun case study
+                    </Link>
+                    <Link href="/projects/epiphai-ai-automation-platform">
+                      epiphAI case study
+                    </Link>
+                    <Link href="/projects/accounting-workspace">AI Accounting Workspace case study</Link>
+                    <Link href="/projects/investor-platform">Private Markets Investor Platform case study</Link>
+                  </>
                 )}
-              </Column>
-              {/* Company work images */}
-              {experience.images && experience.images.length > 1 && (
-                <Row fillWidth paddingTop="m" gap="12" wrap>
-                  {experience.images.slice(1).map((image) => (
-                    <Row
-                      key={`${experience.company}-${image.src}`}
-                      border="neutral-medium"
-                      radius="m"
-                      style={{ maxWidth: '300px' }}
-                    >
-                      <Media
-                        enlarge
-                        radius="m"
-                        alt={image.alt}
-                        src={image.src}
-                      />
-                    </Row>
-                  ))}
-                </Row>
-              )}
-            </Column>
-          ))}
-        </Column>
-      )}
-    </Column>
+                {index === 1 && (
+                  <Link href="/projects/procurement-intelligence">Internal Procurement Intelligence Platform case study</Link>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className={styles.actions}>
+        <a  href="/resume/Himanshu_Sharma_SDE1.pdf">
+          Read my resume
+        </a>
+        <a  href={`mailto:${person.email}`}>
+          Get in touch
+        </a>
+      </div>
+    </main>
   );
 }

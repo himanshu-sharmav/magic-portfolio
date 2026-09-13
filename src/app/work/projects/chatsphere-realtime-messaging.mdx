@@ -1,61 +1,17 @@
 ---
-title: "ChatSphere – Real-Time Messaging Application"
+title: "ChatSphere \u2014 real-time messaging prototype"
 publishedAt: "2025-01-15"
-summary: "Developed a scalable real-time chat application using Django Channels, WebSockets, and Redis, supporting 100+ concurrent users with 30% faster message delivery."
-images:
-  - "/images/projects/chatsphere/cover-01.png"
-team:
-  - name: "Himanshu Sharma"
-    role: "Backend Developer"
-    avatar: "/images/avatar.jpeg"
-    linkedIn: "https://linkedin.com/in/himanshu-sharma-055265207"
+summary: "Django Channels room broadcasts with persisted message history."
+tag: "EARLIER BACKEND PROTOTYPE"
+images: []
+team: [{"name": "Himanshu Sharma", "role": "Software Engineer", "avatar": "/images/avatar.jpeg", "linkedIn": "https://www.linkedin.com/in/himanshu-sharma-055265207/"}]
+link: "https://github.com/himanshu-sharmav/chat-proj"
 ---
 
-## Overview
+## What I explored
 
-ChatSphere is a real-time messaging application built to handle high-concurrency chat scenarios. The project demonstrates expertise in WebSocket technology, asynchronous programming, and scalable architecture design.
+I built a real-time messaging prototype with Django Channels, WebSocket room broadcasts, and persisted message history.
 
-## Key Features
+The prototype helped me explore asynchronous message handling and the boundary between transient connections and stored conversation data. Its scope is room broadcasts and persisted history; production access controls and load testing remain further work.
 
-- **Real-Time Communication**: Implemented WebSocket connections using Django Channels for instant message delivery
-- **Scalable Architecture**: Designed to support 100+ concurrent users with horizontal scaling capabilities
-- **Redis Integration**: Used Redis as a channel layer for managing WebSocket connections across multiple server instances
-- **Message Persistence**: Implemented efficient database schema for storing chat history with optimized queries
-- **User Presence**: Real-time user online/offline status tracking
-- **Typing Indicators**: Live typing status updates for enhanced user experience
-
-## Technologies Used
-
-- **Backend Framework**: Django with Django Channels
-- **WebSocket Server**: Daphne ASGI server
-- **Message Broker**: Redis for channel layer and caching
-- **Reverse Proxy**: NGINX for WebSocket proxying and load balancing
-- **Containerization**: Docker for consistent deployment environments
-- **Database**: PostgreSQL for message persistence
-
-## Performance Optimizations
-
-1. **WebSocket Tuning**: Optimized Daphne + NGINX configuration to reduce message delivery time by 30%
-2. **Connection Pooling**: Implemented efficient connection management for database and Redis
-3. **Dockerization**: Reduced provisioning time by 40% through containerized deployment
-4. **Caching Strategy**: Leveraged Redis for frequently accessed data to minimize database queries
-
-## Challenges and Learnings
-
-Key challenges included:
-- Managing WebSocket connection lifecycle and handling disconnections gracefully
-- Ensuring message ordering and delivery guarantees in a distributed system
-- Optimizing for low latency while maintaining data consistency
-- Scaling WebSocket connections across multiple server instances
-
-These challenges provided deep insights into real-time systems architecture and asynchronous programming patterns.
-
-## Outcome
-
-ChatSphere successfully demonstrates:
-- **100+ concurrent users** supported simultaneously
-- **30% faster message delivery** compared to initial implementation
-- **40% reduction** in deployment provisioning time
-- **Production-ready architecture** with Docker containerization
-
-GitHub: [github.com/himanshu-sharmav/chat-proj](https://github.com/himanshu-sharmav/chat-proj)
+[View the source code](https://github.com/himanshu-sharmav/chat-proj)

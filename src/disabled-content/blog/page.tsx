@@ -1,19 +1,22 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
+import { notFound } from "next/navigation";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
-import { baseURL, blog, person, newsletter } from "@/resources";
+import { baseURL, blog, person, routes } from "@/resources";
 
 export async function generateMetadata() {
+  if (!routes["/blog"]) return { title: "Page not found", robots: { index: false, follow: false } };
   return Meta.generate({
     title: blog.title,
     description: blog.description,
     baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(blog.title)}`,
+    image: `${baseURL}/images/og/home.jpg`,
     path: blog.path,
   });
 }
 
 export default function Blog() {
+  if (!routes["/blog"]) notFound();
   return (
     <Column maxWidth="m" paddingTop="24">
       <Schema
@@ -22,7 +25,7 @@ export default function Blog() {
         title={blog.title}
         description={blog.description}
         path={blog.path}
-        image={`/api/og/generate?title=${encodeURIComponent(blog.title)}`}
+        image={`${baseURL}/images/og/home.jpg`}
         author={{
           name: person.name,
           url: `${baseURL}/blog`,
