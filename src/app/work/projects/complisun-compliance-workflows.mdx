@@ -1,0 +1,34 @@
+---
+title: "CompliSun \u2014 connected compliance workflows"
+publishedAt: "2026-09-12"
+summary: "Built onboarding, screening, review, monitoring, and asynchronous notifications with traceable workflow states."
+tag: "DIGITAL ALPHA \u00b7 COMPLIANCE"
+images: []
+team: [{"name": "Himanshu Sharma", "role": "Software Engineer", "avatar": "/images/avatar.jpeg", "linkedIn": "https://www.linkedin.com/in/himanshu-sharma-055265207/"}]
+---
+
+## The engineering problem
+
+Compliance work crosses documents, company records, risk assessments, background screening, and human decisions. The software needs to preserve the connection between each step while allowing analysts to review and act.
+
+## What I built
+
+I implemented client onboarding from signed HubSpot webhooks through Celery-driven company and beneficial-owner screening, risk escalation, analyst decisions, and a separate-reviewer countersignature.
+
+I also built a **six-step company onboarding** flow with validation, progress tracking, and S3 attachments, connecting backend state to the interface a team actually uses.
+
+## Monitoring and notifications
+
+I implemented compliance monitoring and testing with reproducible sampling, checklists, AI-assisted disposition suggestions, and hash-chain audit verification/export.
+
+A shared notification system covers document expiry, contracts, policies, and issue workflows. It combines scheduled Celery tasks with **AWS SQS, Lambda, and SES**, bulk dispatch, and delivery-status tracking.
+
+## Integration and maintainability
+
+I connected policy and contract uploads to existing Qdrant document search and refactored risk-assessment APIs into modular Django REST Framework views and serializers with team-scoped validation and audit records.
+
+These were my contributions within a larger team-owned product. My work focused on complete workflow slices and their failure states.
+
+**Stack:** Python, Django REST Framework, Celery, AWS S3/SQS/Lambda/SES, React, Qdrant integration.
+
+[More work at Digital Alpha](/work)

@@ -1,0 +1,28 @@
+.system{position:relative;min-width:0;width:100%;color:var(--studio-ink)}
+.scene{position:relative;height:540px;perspective:1200px;isolation:isolate}
+.aura{position:absolute;inset:9% -5% 3%;background:radial-gradient(ellipse at 50% 56%,#f35c252a,transparent 64%);filter:blur(20px);z-index:-1}
+.orbit{position:absolute;width:96%;height:57%;left:2%;top:26%;border:1px solid var(--studio-rule);border-radius:50%;transform:rotate(-27deg);opacity:.6}
+.orbit:after{content:"";position:absolute;inset:-36px 26px;border:1px solid var(--studio-rule);border-radius:50%;transform:rotate(52deg)}
+.drawing{position:absolute;inset:5% -4% 0;transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .35s ease-out;transform-style:preserve-3d}
+.drawing svg{width:100%;height:100%;overflow:visible}
+.layer{transition:transform .8s cubic-bezier(.22,1,.36,1),opacity .45s;transform-box:view-box;filter:drop-shadow(0 16px 10px #0003)}
+.layer0{transform:translateY(0px)}.layer1{transform:translateY(116px)}.layer2{transform:translateY(232px)}
+.layer[data-selected=true]{filter:drop-shadow(0 16px 14px #ff653330)}
+.drawing[data-assembled=true] .layer0{transform:translateY(150px)}.drawing[data-assembled=true] .layer1{transform:translateY(175px)}.drawing[data-assembled=true] .layer2{transform:translateY(200px)}
+.sceneLabel{position:absolute;top:1%;left:5%;font:9px var(--font-code),monospace;letter-spacing:.04em;color:var(--studio-muted)}
+.explode{position:absolute;right:2%;bottom:0;display:flex;gap:20px;align-items:center;color:var(--studio-ink);font:11px var(--font-body),sans-serif;border:1px solid var(--studio-rule);border-radius:30px;min-height:44px;padding:9px 16px;background:var(--studio-paper);cursor:pointer;box-shadow:0 4px 20px #0001}
+.explode span{font-size:21px;color:var(--studio-red)}.explode:hover{border-color:var(--studio-red)}
+.inspector{position:relative;margin:20px 0 0 28px;padding-top:18px;border-top:1px solid var(--studio-rule)}
+.layerTabs{display:flex;gap:24px;margin-bottom:18px}.layerTabs button{background:transparent;border:0;padding:7px 0;cursor:pointer;color:var(--studio-muted);font:11px var(--font-body),sans-serif;min-height:36px;transition:color .2s}.layerTabs button span{font:9px var(--font-code),monospace;margin-right:7px;opacity:.6}.layerTabs button[aria-pressed=true]{color:var(--studio-red)}.layerTabs button[aria-pressed=true] span{opacity:1}.detail{max-width:370px;min-height:77px}.detail strong{font-size:13px;font-weight:500}.detail p{font-size:11px;line-height:1.8;color:var(--studio-muted);margin:7px 0 0}.motion{position:absolute;right:0;top:21px;background:none;border:0;padding:10px 0;color:var(--studio-muted);font:9px var(--font-code),monospace;cursor:pointer;min-height:36px}.motion:hover{color:var(--studio-ink)}
+@media(min-width:1500px){.scene{height:590px}}
+@media(max-width:1100px){.scene{height:470px}.layerTabs{gap:14px}.motion{position:static;margin-top:7px}.inspector{margin-left:12px}.detail{min-height:76px}}
+@media(max-width:760px){.scene{height:390px}.system{max-width:540px;margin:auto}.sceneLabel{top:0;font-size:8px}.drawing{inset:5% -1% 0}.inspector{margin:23px 0 0}.layerTabs{gap:24px;margin-bottom:12px}.layerTabs button{min-height:44px}.motion{position:absolute;top:24px;right:0;font-size:8px}.detail{max-width:92%;min-height:88px}.detail p{font-size:12px}.explode{bottom:-4px;font-size:10px}}
+@media(max-width:380px){.layerTabs{gap:14px}.motion{position:static;margin-top:0}.scene{height:355px}}
+@media(prefers-reduced-motion:reduce){.drawing,.layer{transition:none;transform:none}.layer1{transform:translateY(116px)}.layer2{transform:translateY(232px)}.motion{display:none}}
+
+.drawing[data-assembled=false][data-active="1"] .layer0{transform:translateY(-42px)}
+.drawing[data-assembled=false][data-active="2"] .layer0{transform:translateY(-58px);opacity:.48}
+.drawing[data-assembled=false][data-active="2"] .layer1{transform:translateY(52px);opacity:.58}
+.drawing[data-assembled=false][data-active="0"] .layer1,.drawing[data-assembled=false][data-active="0"] .layer2{opacity:.6}
+/* Keep the decorative orbital field inside its own stage. */
+.scene{overflow:clip}

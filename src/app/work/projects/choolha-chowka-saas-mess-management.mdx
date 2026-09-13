@@ -1,55 +1,32 @@
 ---
-title: "Choolha Chowka – SaaS Mess Management Platform"
-publishedAt: "2025-03-01"
-summary: "Built a multi-tenant SaaS platform for mess management with Django, DRF, Celery, Redis, and PostgreSQL, achieving 99% latency reduction and 10× throughput improvement."
-images:
-  - "/images/projects/choolha-chowka/cover-01.png"
-  - "/images/projects/choolha-chowka/cover-02.png"
-  - "/images/projects/choolha-chowka/cover-03.png"
-team:
-  - name: "Himanshu Sharma"
-    role: "Full-Stack / Backend Developer"
-    avatar: "/images/avatar.jpeg"
-    linkedIn: "https://linkedin.com/in/himanshu-sharma-055265207"
+title: "Choolha Chowka \u2014 meal subscriptions and payment recovery"
+publishedAt: "2026-09-08"
+summary: "Owned backend and DevOps for meal plans, OTP access, subscription changes, and signed Razorpay webhook recovery."
+tag: "INDEPENDENT PROJECT \u00b7 BACKEND & DEVOPS"
+images: []
+team: [{"name": "Himanshu Sharma", "role": "Software Engineer", "avatar": "/images/avatar.jpeg", "linkedIn": "https://www.linkedin.com/in/himanshu-sharma-055265207/"}]
+link: "https://github.com/himanshu-sharmav/Choolha_Chawka"
 ---
 
-## Overview
+## The product
 
-Choolha Chowka is a comprehensive SaaS platform designed to streamline mess management operations for educational institutions and hostels. The platform handles onboarding, payments, meal planning, leave management, and role-based access control dashboards.
+Choolha Chowka is a meal-subscription platform covering account access, carts, plan durations, leave handling, payments, and subscription changes.
 
-## Key Features
+## My ownership
 
-- **Multi-Tenant Architecture**: Built a scalable multi-tenant system supporting multiple organizations with isolated data and customizable configurations.
-- **Asynchronous Task Processing**: Implemented Celery-Redis queue system for handling background tasks, reducing latency from 5 seconds to under 1 second (99% improvement).
-- **Performance Optimization**: Achieved 10× throughput improvement through strategic query optimization, Redis caching implementation, and custom observability middleware.
-- **Payment Integration**: Integrated secure payment gateways for seamless meal plan subscriptions and transactions.
-- **RBAC Dashboards**: Developed role-based access control with separate dashboards for administrators, mess managers, and students.
+I owned the backend and DevOps work, collaborating with Abhimanyu Singh on the frontend. The backend uses Django REST Framework, PostgreSQL, Redis, Celery, Razorpay, and Docker.
 
-## Technologies Used
+## A payment is more than a browser callback
 
-- **Backend**: Django, Django REST Framework (DRF)
-- **Task Queue**: Celery with Redis broker
-- **Database**: PostgreSQL with optimized queries and indexing
-- **Caching**: Redis for session management and data caching
-- **Deployment**: Railway with containerized Gunicorn + PostgreSQL + Redis stack
-- **Security**: SSL/TLS encryption, JWT authentication
-- **CI/CD**: Automated deployment pipeline with GitHub Actions
+Browser confirmation can fail after a payment succeeds. I implemented HMAC-verified Razorpay webhooks to reconcile payment state and activate subscriptions independently of that browser response.
 
-## Challenges and Learnings
+The handling includes repeat-payment checks and isolates notification failures so an email error does not undo the subscription flow.
 
-The primary challenge was handling high concurrent user loads while maintaining sub-second response times. This was solved through:
+## Other workflows I built
 
-1. **Database Optimization**: Implemented strategic indexing, query optimization, and connection pooling
-2. **Caching Strategy**: Deployed multi-layer caching with Redis for frequently accessed data
-3. **Async Processing**: Offloaded heavy operations to Celery workers to keep API responses fast
-4. **Monitoring**: Built custom observability middleware to track performance metrics and identify bottlenecks
+- Multi-role OTP authentication and Redis OTP caching.
+- Multi-plan carts, configurable durations, leave handling, and subscription-day changes.
+- Celery jobs for expiry and email processing, including retry behavior.
+- Docker deployment support for the backend and supporting services.
 
-## Outcome
-
-The platform now serves multiple institutions with:
-- **99.9% uptime** maintained through robust infrastructure
-- **Sub-second response times** for all critical operations
-- **10× throughput** compared to initial implementation
-- **Scalable architecture** ready for horizontal scaling
-
-Visit: [choolhachowka.com](https://www.choolhachowka.com/)
+[View the source code](https://github.com/himanshu-sharmav/Choolha_Chawka)

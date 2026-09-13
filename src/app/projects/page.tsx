@@ -1,6 +1,7 @@
-import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
+import { Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, projects } from "@/resources";
 import { Projects } from "@/components/work/Projects";
+import styles from "@/components/work/ProjectCollection.module.css";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -14,7 +15,7 @@ export async function generateMetadata() {
 
 export default function ProjectsPage() {
   return (
-    <Column maxWidth="m" paddingTop="24">
+    <main id="main-content" className={styles.page}>
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -28,10 +29,11 @@ export default function ProjectsPage() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {projects.title}
-      </Heading>
+      <header className={styles.pageHeader}>
+        <div><p className={styles.eyebrow}>Selected engineering work</p><h1>Built.<br /><span>Then made better.</span></h1></div>
+        <p className={styles.intro}>Company products and independent builds. The problems I worked on, the parts I owned, and the engineering decisions behind them.</p>
+      </header>
       <Projects />
-    </Column>
+    </main>
   );
 }

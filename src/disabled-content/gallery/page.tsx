@@ -1,18 +1,21 @@
 import { Flex, Meta, Schema } from "@once-ui-system/core";
+import { notFound } from "next/navigation";
 import GalleryView from "@/components/gallery/GalleryView";
-import { baseURL, gallery, person } from "@/resources";
+import { baseURL, gallery, person, routes } from "@/resources";
 
 export async function generateMetadata() {
+  if (!routes["/gallery"]) return { title: "Page not found", robots: { index: false, follow: false } };
   return Meta.generate({
     title: gallery.title,
     description: gallery.description,
     baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(gallery.title)}`,
+    image: `${baseURL}/images/og/home.jpg`,
     path: gallery.path,
   });
 }
 
 export default function Gallery() {
+  if (!routes["/gallery"]) notFound();
   return (
     <Flex maxWidth="l">
       <Schema
@@ -21,7 +24,7 @@ export default function Gallery() {
         title={gallery.title}
         description={gallery.description}
         path={gallery.path}
-        image={`/api/og/generate?title=${encodeURIComponent(gallery.title)}`}
+        image={`${baseURL}/images/og/home.jpg`}
         author={{
           name: person.name,
           url: `${baseURL}${gallery.path}`,

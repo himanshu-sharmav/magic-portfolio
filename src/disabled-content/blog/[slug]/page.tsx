@@ -14,7 +14,7 @@ import {
   Media,
   Line,
 } from "@once-ui-system/core";
-import { baseURL, about, blog, person } from "@/resources";
+import { baseURL, about, blog, person, routes } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
 import { Metadata } from "next";
@@ -22,7 +22,10 @@ import React from "react";
 import { Posts } from "@/components/blog/Posts";
 import { ShareSection } from "@/components/blog/ShareSection";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  if (!routes["/blog"]) return [];
   const posts = getPosts(["src", "app", "blog", "posts"]);
   return posts.map((post) => ({
     slug: post.slug,
@@ -34,6 +37,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string | string[] }>;
 }): Promise<Metadata> {
+  if (!routes["/blog"]) return { title: "Page not found", robots: { index: false, follow: false } };
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -48,12 +52,13 @@ export async function generateMetadata({
     title: post.metadata.title,
     description: post.metadata.summary,
     baseURL: baseURL,
-    image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
+    image: post.metadata.image || `${baseURL}/images/og/home.jpg`,
     path: `${blog.path}/${post.slug}`,
   });
 }
 
 export default async function Blog({ params }: { params: Promise<{ slug: string | string[] }> }) {
+  if (!routes["/blog"]) notFound();
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug)
     ? routeParams.slug.join("/")
@@ -85,7 +90,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             dateModified={post.metadata.publishedAt}
             image={
               post.metadata.image ||
-              `/api/og/generate?title=${encodeURIComponent(post.metadata.title)}`
+              `${baseURL}/images/og/home.jpg`
             }
             author={{
               name: person.name,

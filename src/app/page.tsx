@@ -1,130 +1,37 @@
-import {
-  Heading,
-  Text,
-  Button,
-  Avatar,
-  RevealFx,
-  Column,
-  Badge,
-  Row,
-  Schema,
-  Meta,
-  Line,
-} from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
-import { Projects } from "@/components/work/Projects";
-import { Posts } from "@/components/blog/Posts";
+import Link from "next/link";
+import { Meta } from "@once-ui-system/core";
+import { home, baseURL, person, about } from "@/resources";
+import TechnologyWorkbench from "@/components/TechnologyWorkbench";
+import PacketPost from "@/components/PacketPost";
+import ContactActions from "@/components/ContactActions";
+import SystemsScene from "@/components/SystemsScene";
+import ProjectShowcase from "@/components/ProjectShowcase";
+import styles from "./studio.module.css";
 
 export async function generateMetadata() {
-  return Meta.generate({
-    title: home.title,
-    description: home.description,
-    baseURL: baseURL,
-    path: home.path,
-    image: home.image,
-  });
+  return Meta.generate({ title: home.title, description: home.description, baseURL, path: home.path, image: home.image });
 }
 
 export default function Home() {
-  return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        path={home.path}
-        title={home.title}
-        description={home.description}
-        image={`${baseURL}${home.image}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Column fillWidth horizontal="center" gap="m">
-        <Column maxWidth="s" horizontal="center" align="center">
-          {home.featured.display && (
-            <RevealFx
-              fillWidth
-              horizontal="center"
-              paddingTop="16"
-              paddingBottom="32"
-              paddingLeft="12"
-            >
-              <Badge
-                background="brand-alpha-weak"
-                paddingX="12"
-                paddingY="4"
-                onBackground="neutral-strong"
-                textVariant="label-default-s"
-                arrow={false}
-                href={home.featured.href}
-              >
-                <Row paddingY="2">{home.featured.title}</Row>
-              </Badge>
-            </RevealFx>
-          )}
-          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
-            <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
-            </Heading>
-          </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
-              {home.subline}
-            </Text>
-          </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
-            >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
-                {about.title}
-              </Row>
-            </Button>
-          </RevealFx>
-        </Column>
-      </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
-      {routes["/blog"] && (
-        <Column fillWidth gap="24" marginBottom="l">
-          <Row fillWidth paddingRight="64">
-            <Line maxWidth={48} />
-          </Row>
-          <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
-            <Row flex={1} paddingLeft="l" paddingTop="24">
-              <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
-              </Heading>
-            </Row>
-            <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
-            </Row>
-          </Row>
-          <Row fillWidth paddingLeft="64" horizontal="end">
-            <Line maxWidth={48} />
-          </Row>
-        </Column>
-      )}
-      <Projects range={[2]} />
-      <Mailchimp />
-    </Column>
-  );
+  return <main id="main-content" className={styles.studio}>
+    <section className={styles.hero} aria-labelledby="hello">
+      <div className={styles.intro}>
+        <p className={styles.eyebrow}><span className={styles.status} /> SOFTWARE ENGINEER · INDIA</p>
+        <h1 id="hello">Himanshu <br /><span>Sharma</span><i>.</i></h1>
+        <p className={styles.description}>I build the parts you see.<br /><strong>And the systems you don’t.</strong></p>
+        <p className={styles.bio}>Backend and full-stack engineer at Digital Alpha Platforms. APIs, data, and everything it takes to ship the whole experience.</p>
+        <div className={styles.introActions}><a href="#selected-work">Explore my work<span className={styles.buttonDot} /></a><a href="/resume/Himanshu_Sharma_SDE1.pdf">Read my resume</a></div>
+        <p className={styles.note}>Open to SDE-I roles in India & internationally remote.</p>
+      </div>
+      <SystemsScene />
+    </section>
+    <div className={styles.interlude}><span>THOUGHT THROUGH.</span><span>BUILT FROM SCRATCH.</span><span>MADE TO WORK.</span></div>
+    <section id="selected-work" className={styles.selected}><ProjectShowcase /></section>
+    <section id="play" className={styles.playSection} aria-labelledby="play-title">
+      <div className={styles.playIntro}><p className={styles.eyebrow}>PLAY SOMETHING I BUILT</p><h2 id="play-title">Some things are <br />built for <em>fun.</em></h2><p>A tiny delivery game. Five parcels, a little town, and absolutely no meetings.</p><p className={styles.playNote}>Made for your keyboard. Or your thumbs.</p></div>
+      <div className={styles.arcade}><PacketPost /></div>
+    </section>
+    <section id="technology" className={styles.toolSection}><TechnologyWorkbench id="home-technologies" /></section>
+    <section className={styles.letter} aria-labelledby="contact-title"><p className={styles.eyebrow}>YOUR NEXT ENGINEER?</p><div className={styles.contactRow}><h2 id="contact-title">Let’s make <br /><span>something work.</span></h2><ContactActions email={person.email} calendarUrl={about.calendar.link} /></div><div className={styles.contactBottom}><p>Backend & full-stack · India / remote</p><div className={styles.socials}><a href="https://github.com/himanshu-sharmav">GitHub</a><a href="https://www.linkedin.com/in/himanshu-sharma-055265207/">LinkedIn</a><Link href="/about">More about me</Link></div></div></section>
+  </main>;
 }

@@ -37,11 +37,10 @@ const display: DisplayConfig = {
 const protectedRoutes: ProtectedRoutesConfig = {};
 
 // Import and set font for each variant
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { JetBrains_Mono } from "next/font/google";
-import { Geist } from "next/font/google";
 
-const heading = Inter({
+const heading = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
@@ -113,7 +112,7 @@ const effects: EffectsConfig = {
   },
   gradient: {
     display: true, // Enable gradient for modern look
-    opacity: 60, // Subtle gradient
+    opacity: 12, // Subtle gradient
     x: 30,
     y: 40,
     width: 120,
@@ -123,7 +122,7 @@ const effects: EffectsConfig = {
     colorEnd: "accent-background-weak",
   },
   dots: {
-    display: true,
+    display: false,
     opacity: 30, // Slightly more subtle
     size: "3", // Larger dots for better visibility
     color: "brand-background-medium",
@@ -136,7 +135,7 @@ const effects: EffectsConfig = {
     height: "0.25rem",
   },
   lines: {
-    display: true, // Enable lines for texture
+    display: false, // Keep content visually quiet
     opacity: 15, // Very subtle
     color: "brand-alpha-weak",
     size: "24", // Larger spacing
